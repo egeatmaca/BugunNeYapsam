@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %} Giriş Yap {% endblock %}
+{% block content %}
+
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<p>{{msg}}</p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+<br><h2 align="center">Üye Girişi</h2><br>
+
+<form action="#" method="POST">
+	<div align="center">
+		<input type="text" name="name" placeholder="Kullanıcı adınız" />
+	</div><br>
+	<div align="center">
+		<input type="password" name="pass" placeholder="Şifreniz" />
+	</div><br>
+	<div align="center">
+		<input class="btn btn-dark" type="submit" name="submit" value="Giriş Yap" />
+	</div><br>
+	<div align="center">
+		<input class="btn btn-dark" type="submit" name="passreset" value="Şifremi unuttum" />
+	</div>
+</form>
+
+{% endblock %}

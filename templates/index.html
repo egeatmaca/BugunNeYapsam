@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %} Bugün Ne Yapsam? {% endblock %}
+{% block content %}
+
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<div align="center"><div style="max-width: 25%;">
+					<b style="position: relative; bottom: -20px; border-style: solid; border-width:3px ; border-color: #FF5500; border-radius: 3px">{{msg}}</b>
+				</div></div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	
+	<style>
+		div.drop{
+		  position: relative;
+		  right: 5px;
+		  top: 20px;
+		  max-width: 13%;
+		  border-style: solid;
+  		  border-width: 2px;
+  		  border-radius: 5px;
+		}
+		
+		.btn-default{
+		  color:white; 
+		  background-color:#FF5500;"		
+		}
+	</style>
+
+	<div class="drop">
+		<form id="siralama" action="#" method="POST">
+			<div class="btn-group btn-block" role="group" aria-label="Basic example">
+				<input type="submit" class="btn btn-default" name="order" value="En Iyi" />
+				<input type="submit" class="btn btn-default" name="order" value="En Yeni" />
+			</div>
+		</form>
+	</div>
+
+	<div align="left" style="position: relative; bottom: -0.5px; z-index: 3;"><div class="drop" align="right"><div class="dropdown">
+		<button class="btn btn-default btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	  		Kategoriler
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	    		<a class="dropdown-item" href="/">Tümü</a>
+				{% for category in categories: %}
+	    			<a class="dropdown-item" href="/{{category}}">{{category}}</a>
+				{% endfor %}
+	  	</div>
+	</div></div></div>
+
+	<div style="position: relative; bottom: 50px;">
+		<h2 align="center"><b>Bugün ne yapsam Memo?</b></h2>
+		<h2 align="center"><b>Memo: İşte bugün yapabileceğin birkaç aktivite...</b></h2>
+		
+		{% for i in range(length) %}
+			<div class="col-auto" align="center" style="position: relative; bottom: -7px;">
+				<div class="card w-50" style="background-color: #FF8C00">
+					<div class="card-body">
+			   			<b>{{content[i].text}}</b> 
+						<form id="updown" action="#" method="post">
+							<input type="hidden" name="id" value={{content[i][0]}} />
+							<div align="right">{{content[i].ups}} kişi <input type="submit" value="yukarı" class="btn btn-dark btn-sm" name="up"> dedi!</div>
+							<div align="right" style="position: relative; top: 2px">{{content[i].downs}} kişi <input type="submit" value="aşağı" class="btn btn-dark btn-sm" name="down"/> dedi!</div>
+						</form>
+						
+						<div align="left" style="opacity: 0.9">
+						  <!-- Facebook share button code -->
+						  <div class="fb-share-button" 
+						    data-href="bugunneyapsam.com/post:{{content[i]._id}}" 
+						    data-layout="button"
+						    style="position: relative; top: -7px">
+						  </div>
+						  
+						 
+						    <!-- Twitter share button code -->
+						    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Sizinle Memo&#39;nun &quot;Bugün ne yapsam?&quot; önerilerinden birini paylaşmak istedim." data-url="https://bugunneyapsam.com/post:{{content[i]._id}}" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+						  		  			
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+	<div align="center"><h2 style="background-color: #FF8C00; width:25%">Öneri yap!</h2></div>
+	<div style="position: sticky; bottom: 1px"><form id = "oneriyap" action="#" method="post">
+		<div class="col-auto" align="center" style="background-color: #FFA500">
+			<div class="form-group w-50">
+				<textarea class="form-control" type="text" name="oneri" rows="1" style="color: black; background-color: #FF8C00;"></textarea>
+				<select class="custom-select mb-3" form="oneriyap" name = "kategori" style="color: black; background-color: #FF8C00">
+  					<option selected>Lütfen kategori seç</option>
+					<option value="Sinema">Sinema</option>
+					<option value="Spor ve Saglikli Yasam">Spor ve Sağlıklı Yaşam</option>
+					<option value="Oyunlar">Oyunlar</option>
+					<option value="Kitap">Kitap</option>
+					<option value="Kisisel Gelisim">Kişisel Gelişim</option>
+					<option value="Egitim">Eğitim</option>
+					<option value="Mutfak">Mutfak</option>
+					<option value="Diger">Diğer</option>
+				</select>	
+				<input class="btn btn-dark" type="submit" value="Şimdi Öner!"></input>
+			</div>
+		</div>
+	</form></div>
+
+{% endblock %}
+
+

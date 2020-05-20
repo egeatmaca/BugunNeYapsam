@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %} Kayıt Ol {% endblock %}
+{% block content %}
+
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<p>{{msg}}</p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+	
+	<form id = "kayit" action="#" method="post">
+		<div class="col-auto" align="center">
+			<div class="form-group w-50">
+				<h2 style="background-color: #FF8C00 width:50%">Kayıt ol!</h2>
+
+				<!--
+				<div align="center">
+					<label for="name">Kullanici Adi:</label>
+				</div>
+				<div align="center">
+					<input type="text" name="name"/>
+				</div>
+				<div align="center">
+					<label for="email">Email:</label>
+				</div>
+				<div align="center">
+					<input type="email" name="email"/>
+				</div>
+				<div align="center">
+					<label for="password">Sifre:</label>
+				</div>
+				<div align="center">
+					<input type="text" name="password"/>
+				</div>
+				--->
+
+				<div align="center">
+					<input type="text" name="name" placeholder="Kullanıcı adınız" minlength="1"/>
+				</div><br>
+				<div align="center">
+					<input type="email" name="email" placeholder="E-postanız" minlength="1"/>
+				</div><br>
+				<div align="center">
+					<input type="password" name="pass" placeholder="Şifreniz (>8 karakter)" minlength="8" required />
+				</div><br>
+
+				<div align="center">
+					<label for="categories">Lütfen ilgi alanlarınızı seçiniz:</label>
+				</div>
+				{% for category in categories %}
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" name=cat_list value={{category}} />
+						<label class="form-check-label">
+							{{category}}
+						</label>
+					</div>
+				{% endfor %}
+				<div align="center">
+					<input class="btn btn-dark" type="submit" value="Kayıt ol!"></input>
+				</div>
+			</div>
+		</div>
+	</form>
+
+{% endblock %}

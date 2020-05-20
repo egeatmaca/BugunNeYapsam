@@ -1,0 +1,42 @@
+{% extends "base_usr.html" %}
+{% block title %} Profil {% endblock %}
+{% block content %}
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<p>{{msg}}</p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+<form action="#" method="POST">
+	<div align="left" style="position: relative; top: 10px; left: 10px"><div class="drop" align="left"><div class="dropdown">
+
+		<p>Kullanıcı adın:
+		<input type="text" name="name" placeholder={{user.name}} minlength="1" />
+		<input type="submit" name="name_change" value='Değiştir'></p>
+		<p>E-postan:       
+		<input type="email" name="email" placeholder={{user.email}} minlength="1" />
+		<input type="submit" name="email_change" value='Değiştir'></p>
+		<p>Parolan:
+		<input type="password" name="parola" placeholder={{user.password}} minlength="8" />
+		<input type="submit" name="pass_change" value="Değiştir"></p>
+		<p>Kategorilerin:
+		<div align="left" style="position: relative;left: 100px">
+		{% for category in cats %}
+			<div class="form-check">
+				{%if category in values%}
+					<input class="form-check-input" type="checkbox" checked=checked name=cat_list1 value={{category}} />
+				{%else%}
+					<input class="form-check-input" type="checkbox" name=cat_list2 value={{category}} />
+				{%endif%}
+				<label class="form-check-label">
+					{{category}}
+				</label>
+			</div>
+		{% endfor %}
+		<br>
+		<input type="submit" name="cats_change" value="Değiştir"></p></div></p>
+	</div></div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} Aktivasyon {% endblock %}
+{% block content %}
+
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<p>{{msg}}</p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+<form action="#" method="POST">
+	<div align="center">
+		<p>Eğer aktivasyon linkini bulamıyorsanız tekrar göndermek için lütfen kullanıcı adınızı giriniz.</p>
+	</div><br>
+	<div align="center">
+		<input type="text" name="name" placeholder="Kullanıcı adınız"/>
+	</div><br>
+	<div align="center">
+		<p><input type="submit" name="Tekrar gönder"></p>
+	</div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base_usr.html" %}
+{% block title %} Ana Sayfa {% endblock %}
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<div align="center"><div style="max-width: 25%;">
+					<b style="position: relative; bottom: -20px; border-style: solid; border-width:3px ; border-color: #FF5500; border-radius: 3px">{{msg}}</b>
+				</div></div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+		
+	<div class="col-auto" align="center" style="position: relative; bottom: -40px;">
+		<div class="card w-50" style="background-color: #FF8C00">
+			<div class="card-body">
+	   			<b>{{content.text}}</b>
+				<form id="updown" action="#" method="post">
+					<input type="hidden" name="id" value={{content._id}} />
+					<div align="right">{{content.ups}} kişi <input type="submit" value="yukarı" class="btn btn-dark btn-sm" name="up"> dedi!</div>
+					<div align="right">{{content.downs}} kişi <input type="submit" value="aşağı" class="btn btn-dark btn-sm" name="down"/> dedi!</div>
+				</form>
+
+				<div align="left">
+								  <!-- Facebook share button code -->
+								  <div class="fb-share-button" 
+								    data-href="bugunneyapsam.com/post:{{content._id}}" 
+								    data-layout="button">
+								  </div>
+								  
+								  <!-- Twitter share button code -->
+								  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Sizinle Memo&#39;nun &quot;Bugün ne yapsam?&quot; önerilerinden birini paylaşmak istedim." data-url="https://bugunneyapsam.com/post:{{content._id}}" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+	  		</div>
+		</div>
+	</div>
+
+	<form id = "oneriyap" action="#" method="post">
+		<div class="col-auto" align="center" style="position: relative; bottom: -47px;">
+			<div class="form-group w-50">
+				<h2 style="background-color: #FF8C00; width:50%">Öneri yap!</h2>
+				<textarea class="form-control" type="text" name="oneri" rows="3" style="color: black; background-color: #FF8C00"></textarea>
+				<select class="custom-select mb-3" form="oneriyap" name = "kategori" style="color: black; background-color: #FF8C00">
+  					<option selected>Lütfen kategori seç</option>
+					<option value="Sinema">Sinema</option>
+					<option value="Spor ve Saglikli Yasam">Spor ve Sağlıklı Yaşam</option>
+					<option value="Oyunlar">Oyunlar</option>
+					<option value="Kitap">Kitap</option>
+					<option value="Kisisel Gelisim">Kişisel Gelişim</option>
+					<option value="Egitim">Eğitim</option>
+					<option value="Mutfak">Mutfak</option>
+					<option value="Diger">Diğer</option>
+				</select>				
+				<input class="btn btn-dark" type="submit" value="Şimdi Öner!"></input>
+			</div>
+		</div>
+	</form>
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} Şifremi unuttum {% endblock %}
+{% block content %}
+
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<p>{{msg}}</p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+<br><h2 align="center">Parolanızı sıfırlamak için lütfen kullanıcı adınızı giriniz</h2><br>
+
+<form action="#" method="POST">
+	<div align="center">
+		<input type="text" name="name" placeholder="Kullanıcı adınız"/>
+	</div><br>
+	<div align="center">
+		<input class="btn btn-dark" type="submit" name="passreset" value="Şifremi tekrar yolla">
+	</div>
+</form>
+
+{% endblock %}
